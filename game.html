@@ -1,19 +1,60 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>The Serginni Game Project</title>
 	<link rel='icon' href='favicon.ico' type='image/x-icon'/>
+	<link rel="stylesheet" type="text/css" href="styles.css"/>
+	 <!-- ! adding css to make it better for mobile ! -->
 </head>
-<canvas id="gameCanvas" width="800" height="600"></canvas>
 
+<header>
+	<div class="container">
+	  <div class="header-left">
+		<img class="logo" src="https://serginni.github.io/technology-logo-generator-for-media-consulting-companies-597c-el1(1).png" alt="SM logo">                                                                                                                                       
+	  </div>
+	  <span class="fa fa-bars menu-icon"></span>
+	  <div class="header-right">
+		<a href="/">Home</a>
+		<a href="https://github.com/serginni/">About me</a>
+		<a href="flappy_bird.html">Flappy bird</a>
+		<a href="pong2.html">Pong  Multiplayer</a>
+	  </div>
+	</div>
+  </header>
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+<body>
 <div>
 	<h1>It is you (left) vs the AI (right)</h1>
 	<p>You can play as many times as you want. Use your mouse to control your pallet! First one to three wins!</p>	
 </div>
-
+<footer>
+	<p class="p">Created by Serginni Marten [2021] with Basic HTML, CSS, JS.</p>
+</footer>
 <script>
 var canvas;
 var canvasContext;
+// need to add width to code 
+window.onload = function() {
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+
+	var framesPerSecond = 30;
+	setInterval(function() {
+			moveEverything();
+			drawEverything();	
+		}, 1000/framesPerSecond);
+
+	canvas.addEventListener('mousedown', handleMouseClick);
+
+	canvas.addEventListener('mousemove',
+		function(evt) {
+			var mousePos = calculateMousePos(evt);
+			paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
+		});
+}
+
+
 var ballX = 50;
 var ballY = 50;
 var ballSpeedX = 10;
@@ -185,5 +226,5 @@ function colorRect(leftX,topY, width,height, drawColor) {
 }
 
 </script>
-
+</body>
 </html>
